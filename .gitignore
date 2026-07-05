@@ -1,0 +1,31 @@
+# ── 机密（绝不入库、绝不打包分发）──
+.env
+.env.*
+!.env.example
+
+# ── 运行时落盘的用户数据（含隐私）──
+.memory/
+.tasks/
+.transcripts/
+.task_outputs/
+
+# ── Python ──
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# ── 前端 / Rust 构建产物 ──
+app/node_modules/
+app/dist/
+app/src-tauri/target/
+app/src-tauri/gen/
+
+# ── 本地调试 / 自动化产物 ──
+output/
+.playwright-cli/
+.gstack/
+*.log
+
+# ── 系统 ──
+.DS_Store

@@ -1,0 +1,18 @@
+{
+  "identifier": "default",
+  "description": "kunkun 两个窗口的权限：事件总线 + 窗口定位",
+  "windows": ["pet", "panel"],
+  "permissions": [
+    "core:default",
+    "core:window:allow-set-position",
+    "core:window:allow-outer-size",
+    "core:window:allow-outer-position",
+    "core:window:allow-cursor-position",
+    "core:window:allow-scale-factor",
+    "core:window:allow-current-monitor",
+    "core:window:allow-primary-monitor",
+    "core:window:allow-available-monitors",
+    "core:window:allow-set-focus",
+    "core:window:allow-start-dragging"
+  ]
+}

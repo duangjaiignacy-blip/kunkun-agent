@@ -1,0 +1,26 @@
+[package]
+name = "kunkun"
+version = "0.1.0"
+description = "kunkun · 石虎守护灵桌面助手（DeepSeek 主脑 + MiMo 眼睛）"
+edition = "2021"
+rust-version = "1.77"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["macos-private-api", "tray-icon", "image-png"] }
+tauri-plugin-global-shortcut = "2"
+# 单实例锁：无论启动几次都只有一个 kunkun 实例（防出现两只桌宠）。
+# 用 v2 分支而非 2.4.2 —— 2.4.2 缺 6/29 合并的 macOS 修复（阻塞式 socket 占死 async 线程 +
+# 上个实例崩溃后新实例接管），这两个修复对我们「tray+nspanel、可能被强杀」的场景正好需要。
+tauri-plugin-single-instance = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v2" }
+tauri-nspanel = { git = "https://github.com/ahkohd/tauri-nspanel", branch = "v2.1" }
+monitor = { git = "https://github.com/ahkohd/tauri-toolkit", branch = "v2" }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+
+[profile.release]
+strip = true
+lto = true

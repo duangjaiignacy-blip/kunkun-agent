@@ -1,0 +1,59 @@
+/* ═══════════════════════════════════════════════════════
+   kunkun · 石虎守护灵 Design Tokens
+   规范来源：docs/DESIGN.md §1–§2（取色全部来自 v2 设定图）
+   ═══════════════════════════════════════════════════════ */
+
+:root {
+  /* 墨色文字 */
+  --ink: #2e2e29;
+  --ink-2: #6e6e64;
+  --ink-3: #a2a196;
+
+  /* 石虎本体色 */
+  --sage: #8e9880;
+  --sage-deep: #57624a;
+  --cream: #f5efe2;
+  --paper: #faf7f0;
+
+  /* 金银彩绣 */
+  --gold: #b98a48;
+  --gold-soft: #d8bc8a;
+  --silver: #d9d6cc;
+
+  /* 点缀 */
+  --lilac: #a99bdd;
+  --blush: #e9bbad;
+
+  /* 材质 */
+  --glass: rgba(253, 251, 246, 0.82);
+  --stroke: rgba(87, 98, 74, 0.14);
+  --ring: rgba(185, 138, 72, 0.35); /* 角色容器金环 / 气泡描边 */
+  --shadow-panel: 0 24px 80px rgba(60, 60, 40, 0.18), 0 2px 8px rgba(60, 60, 40, 0.06);
+  --shadow-float: 0 4px 16px rgba(60, 60, 40, 0.1);
+
+  /* 圆角三档 */
+  --r-s: 8px;
+  --r-m: 14px;
+  --r-l: 22px;
+
+  /* 字体 */
+  --font-ui: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
+  --font-round: ui-rounded, -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, monospace;
+}
+
+/* ═══ 方案B 翼蜥 Lumo 冷调玻璃皮肤（docs/方案B-真实翼蜥Lumo-演示方案.md §2）═══
+   取色自 realistic-winged-lizard v2 设定图：主体亮绿 / 翼缘柠檬黄 / 腮橙 / 蓝灰世界 */
+.theme-lizard {
+  --sage: #79b23e;            /* 主体亮绿 */
+  --sage-deep: #41772b;       /* 深叶绿 */
+  --cream: #edf4ee;           /* 冷调浅底（角色容器） */
+  --paper: #f1f5f7;           /* 蓝白纸面 */
+  --gold: #b9a63a;            /* 微光黄（灵感光点） */
+  --gold-soft: #e2d97f;
+  --silver: #ccd6da;
+  --blush: #f0b08a;           /* 腮橙（温和错误） */
+  --glass: rgba(243, 248, 250, 0.84);
+  --stroke: rgba(60, 100, 120, 0.16);
+  --ring: rgba(96, 176, 198, 0.45); /* 青蓝光环 */
+}
