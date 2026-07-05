@@ -8,6 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "test:ip": "node scripts/test-ip-preference.mjs",
+    "test:tool-copy": "node scripts/test-tool-copy.mjs",
     "preview": "vite preview",
     "tauri": "tauri"
   },

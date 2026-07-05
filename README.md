@@ -1,12 +1,12 @@
 # kunkun
 
-kunkun 是一个带 macOS 桌宠界面的本地 AI 智能体。它由 Python 后端、React/Tauri 桌面壳和 Rocky 石虎 IP 组成，可以对话、读取文件、执行受控工具、处理图片，并在需要高风险操作时请求确认。
+kunkun 是一个带 macOS 桌宠界面的本地 AI 智能体。它由 Python 后端、React/Tauri 桌面壳，以及 Rocky 石虎 / Lumo 翼蜥双形象组成，可以对话、读取文件、执行受控工具、处理图片，并在需要高风险操作时请求确认。
 
 ## 功能
 
 - DeepSeek 作为主脑：对话、代码、文件操作、任务拆解和工具调用。
 - 小米 MiMo 作为可选眼睛：读取图片、截图和设计稿。
-- macOS 桌面应用：Rocky 桌宠、工作台面板、拖图输入、设置抽屉和会话恢复。
+- macOS 桌面应用：Rocky / Lumo 可切换桌宠、工作台面板、拖图输入、设置抽屉和会话恢复。
 - 工具安全边界：敏感信息脱敏、危险操作确认、会话事件持久化和队列控制。
 - 测试覆盖：包含安全脱敏、会话事件、读写保护等回归测试。
 
@@ -19,7 +19,7 @@ kunkun 是一个带 macOS 桌宠界面的本地 AI 智能体。它由 Python 后
 ├── persist.py               # 本地会话与事件持久化
 ├── tests/                   # Python 回归测试
 ├── app/                     # Tauri + React 桌面应用
-│   ├── src/                 # 前端组件、主题和 Rocky 资产
+│   ├── src/                 # 前端组件、主题和 Rocky/Lumo 资产
 │   └── src-tauri/           # macOS 壳与后端拉起逻辑
 ├── docs/                    # 架构、设计和安全文档
 └── skills/                  # 本地技能示例

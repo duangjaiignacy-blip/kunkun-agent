@@ -21,7 +21,7 @@ export default function Porthole({ pose = 'sit', size = 'l', glow, muted, badge,
       <span className="porthole__clip">
         <img
           src={POSE[pose]}
-          alt={`石虎 Rocky · ${pose}`}
+          alt={`kunkun 角色 · ${pose}`}
           draggable={false}
           style={focus ? { objectPosition: focus } : undefined}
         />
