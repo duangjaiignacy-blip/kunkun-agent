@@ -130,10 +130,10 @@ export const IP_CONFIG = {
     role: '灵感观察助手',
     osLabel: 'Lumo OS',
     theme: 'theme-lizard', // 冷调玻璃皮肤
-    petSize: 138,
+    petSize: 168,
     petPose: {
-      idle: 'b-orb', think: 'b-panel', look: 'b-card',
-      search: 'b-folder', done: 'b-jump', error: 'b-orb', greet: 'b-hero',
+      idle: 'b-hero', think: 'b-panel', look: 'b-card',
+      search: 'b-folder', done: 'b-jump', error: 'b-hero', greet: 'b-hero',
     },
     panelPose: { think: 'b-panel', look: 'b-card', read: 'b-folder', write: 'b-orb', done: 'b-jump', error: 'b-orb' },
     avatar: 'b-head',

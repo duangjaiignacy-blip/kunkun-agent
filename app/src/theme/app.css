@@ -910,9 +910,17 @@ html.transparent-win #root {
   right: 28px;
   bottom: 22px;
 }
+.win-pet.theme-lizard .pet {
+  right: 58px;
+  bottom: 34px;
+}
 /* 状态卡在小窗里可能仍偏挤：本窗内适度收窄并允许换行 */
 .win-pet .pet__status { width: 208px; }
 .win-pet .pet__bubble { white-space: normal; max-width: 200px; }
+.win-pet.theme-lizard .pet__bubble {
+  right: -22px;
+  max-width: 230px;
+}
 
 /* 面板窗口：面板居中，留出投影余量 */
 .win-panel {

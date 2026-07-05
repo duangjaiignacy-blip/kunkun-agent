@@ -9,6 +9,7 @@
     "build": "vite build",
     "test:ip": "node scripts/test-ip-preference.mjs",
     "test:tool-copy": "node scripts/test-tool-copy.mjs",
+    "test:lumo-layout": "node scripts/test-lumo-layout.mjs",
     "preview": "vite preview",
     "tauri": "tauri"
   },
