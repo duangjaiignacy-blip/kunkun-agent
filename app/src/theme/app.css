@@ -1376,6 +1376,9 @@ html.transparent-win #root {
   background: rgba(246, 248, 244, 0.78);
   border: 1px solid rgba(87, 98, 74, 0.08);
 }
+.setting-row--wide {
+  grid-column: 1 / -1;
+}
 .setting-row span,
 .setting-status {
   min-width: 0;
@@ -1424,6 +1427,34 @@ html.transparent-win #root {
 }
 .setting-row input[type="checkbox"]:checked::after {
   transform: translateX(16px);
+}
+.ip-switch {
+  display: inline-flex;
+  flex-shrink: 0;
+  gap: 4px;
+  padding: 3px;
+  border-radius: 10px;
+  border: 1px solid rgba(87, 98, 74, 0.12);
+  background: rgba(255, 255, 255, 0.58);
+}
+.ip-switch button {
+  min-width: 74px;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 7px;
+  color: var(--ink-2);
+  font-size: 12px;
+  font-weight: 650;
+  transition: background 120ms ease, color 120ms ease, box-shadow 120ms ease;
+}
+.ip-switch button:hover {
+  color: var(--ink);
+  background: rgba(87, 98, 74, 0.08);
+}
+.ip-switch button.is-on {
+  color: #fff;
+  background: var(--sage-deep);
+  box-shadow: 0 2px 8px rgba(60, 60, 40, 0.14);
 }
 
 .app-alerts {
@@ -1531,6 +1562,41 @@ html.transparent-win #root {
   background: #2f332b;
 }
 .composer__send:hover { background: var(--sage-deep); }
+
+.theme-lizard .app-panel {
+  background:
+    radial-gradient(640px 360px at 78% 10%, rgba(96, 176, 198, 0.2), transparent 62%),
+    linear-gradient(180deg, rgba(250, 254, 255, 0.82), rgba(239, 248, 250, 0.64)),
+    var(--glass);
+}
+.theme-lizard .app-sidebar {
+  background:
+    linear-gradient(180deg, rgba(232, 246, 247, 0.86), rgba(238, 245, 241, 0.78)),
+    rgba(242, 248, 250, 0.56);
+  border-right-color: rgba(60, 100, 120, 0.14);
+}
+.theme-lizard .sidebar__primary,
+.theme-lizard .chip {
+  background: rgba(65, 119, 43, 0.1);
+}
+.theme-lizard .task-card:hover {
+  border-color: rgba(96, 176, 198, 0.38);
+}
+.theme-lizard .empty__badge {
+  border-color: rgba(96, 176, 198, 0.34);
+  color: var(--sage-deep);
+}
+.theme-lizard .goldline {
+  background:
+    repeating-linear-gradient(90deg,
+      rgba(96, 176, 198, 0.95) 0 7px,
+      var(--gold-soft) 7px 11px,
+      transparent 11px 18px);
+}
+.theme-lizard .composer {
+  border-color: rgba(60, 100, 120, 0.16);
+  background: rgba(250, 254, 255, 0.86);
+}
 
 .app-panel.is-compact .chat { gap: 10px; padding-top: 12px; padding-bottom: 12px; }
 .app-panel.is-compact .msg--bot .msg__body { line-height: 1.5; }

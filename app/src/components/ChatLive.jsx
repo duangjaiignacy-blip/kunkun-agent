@@ -3,6 +3,7 @@ import Porthole from './Porthole'
 import { fetchHealth, sendChat, interruptChat, approveAction, inTauri,
          subscribeEvents, fetchHistory, cancelRun } from '../lib/backend'
 import { busEmit } from '../lib/bus'
+import { IP_CONFIG } from '../data/copy'
 
 // 稳定会话 id：存 localStorage，重开 App 仍是同一会话（历史能恢复）。
 // 「新会话」按钮才换一个新 id。（模式借鉴 pet.js 的 localStorage 用法）
@@ -78,6 +79,8 @@ const TOOL_CN = {
   claim_task: '认领任务', complete_task: '完成任务',
 }
 const toolCn = (name) => TOOL_CN[name] || name
+const ipRole = (ipc) => ipc.role || (ipc.key === 'lizard' ? '灵感观察助手' : '数字记忆守护')
+const ipOsLabel = (ipc) => ipc.osLabel || `${ipc.name} OS`
 
 function EmptyLive({ ipc, onPick }) {
   const greeting = useMemo(
@@ -88,7 +91,7 @@ function EmptyLive({ ipc, onPick }) {
     <div className="empty">
       <div className="empty__hero">
         <Porthole pose={ipc.hero} size="xl" anim="enter" />
-        <div className="empty__badge">Rocky OS</div>
+        <div className="empty__badge">{ipOsLabel(ipc)}</div>
       </div>
       <div className="empty__greeting">{greeting}</div>
       <div className="empty__sub">{ipc.intro}</div>
@@ -100,7 +103,7 @@ function EmptyLive({ ipc, onPick }) {
       <div className="empty__feature-grid">
         <div>
           <strong>看图</strong>
-          <span>拖入图片后让 Rocky 读取内容。</span>
+          <span>拖入图片后让 {ipc.name} 读取内容。</span>
         </div>
         <div>
           <strong>执行</strong>
@@ -180,7 +183,7 @@ function BotMessage({ ipc, msg, showToolDetails }) {
 
 const IMG_RE = /\.(png|jpe?g|gif|webp|bmp|heic)$/i
 
-export default function ChatLive({ ipc }) {
+export default function ChatLive({ ipc, ipKey = ipc.key, onIpChange }) {
   const [msgs, setMsgs] = useState([])
   const [input, setInput] = useState('')
   const [busy, setBusy] = useState(false)
@@ -526,8 +529,8 @@ export default function ChatLive({ ipc }) {
         <div className="sidebar__brand">
           <Porthole pose={ipc.avatar} size="m" anim="breathe" />
           <div>
-            <strong>Rocky</strong>
-            <span>数字记忆守护</span>
+            <strong>{ipc.name}</strong>
+            <span>{ipRole(ipc)}</span>
           </div>
         </div>
 
@@ -536,7 +539,7 @@ export default function ChatLive({ ipc }) {
           <strong>新建会话</strong>
         </button>
 
-        <nav className="sidebar__nav" aria-label="Rocky 功能">
+        <nav className="sidebar__nav" aria-label={`${ipc.name} 功能`}>
           <button className="is-active" onClick={() => inputRef.current && inputRef.current.focus()}>
             <span>⌘</span> 当前对话
           </button>
@@ -570,7 +573,7 @@ export default function ChatLive({ ipc }) {
       <main className="app-main">
         <header className="app-topbar" onMouseDown={onGripDown}>
           <div className="app-title">
-            <span className="app-title__eyebrow">{busy ? 'Rocky 正在处理' : 'Rocky 工作台'}</span>
+            <span className="app-title__eyebrow">{busy ? `${ipc.name} 正在处理` : `${ipc.name} 工作台`}</span>
             <strong>{input || '问我任何事，或把图片拖进来'}</strong>
           </div>
           <div className="app-toolbar">
@@ -592,6 +595,23 @@ export default function ChatLive({ ipc }) {
               <button className="icon-btn" onClick={() => setSettingsOpen(false)} title="关闭设置" aria-label="关闭设置">×</button>
             </div>
             <div className="settings-grid">
+              <div className="setting-row setting-row--wide">
+                <span>
+                  <strong>形象</strong>
+                  <em>切换桌宠、面板皮肤、文案和工具姿态。</em>
+                </span>
+                <div className="ip-switch" role="group" aria-label="形象切换">
+                  {Object.values(IP_CONFIG).map((option) => (
+                    <button
+                      key={option.key}
+                      className={ipKey === option.key ? 'is-on' : ''}
+                      onClick={() => onIpChange && onIpChange(option.key)}
+                    >
+                      {option.name}
+                    </button>
+                  ))}
+                </div>
+              </div>
               <label className="setting-row">
                 <span>
                   <strong>显示工具细节</strong>
@@ -628,7 +648,7 @@ export default function ChatLive({ ipc }) {
                 ? <img className="attach__thumb" src={attach.dataUrl} alt="" />
                 : <span className="attach__icon">图</span>}
               <span className="attach__name">{attach.name || (attach.path || '').split('/').pop()}</span>
-              <span className="attach__hint">回车让 Rocky 看这张图</span>
+              <span className="attach__hint">回车让 {ipc.name} 看这张图</span>
               <button className="attach__x" onClick={() => setAttach(null)} title="移除">✕</button>
             </div>
           )}
@@ -637,7 +657,7 @@ export default function ChatLive({ ipc }) {
             <div className="approval">
               <div className="approval__head">
                 <span className="approval__icon">!</span>
-                <span>Rocky 想执行<strong>「{approval.reason}」</strong>，需要你确认</span>
+                <span>{ipc.name} 想执行<strong>「{approval.reason}」</strong>，需要你确认</span>
               </div>
               <pre className="approval__detail">{approval.detail}</pre>
               <div className="approval__actions">
@@ -656,7 +676,7 @@ export default function ChatLive({ ipc }) {
           )}
         </div>
 
-        {dragOver && <div className="drop-hint">松手，把图片交给 Rocky 看</div>}
+        {dragOver && <div className="drop-hint">松手，把图片交给 {ipc.name} 看</div>}
 
         <div className="panel__body" ref={bodyRef}>
           {msgs.length === 0 ? (

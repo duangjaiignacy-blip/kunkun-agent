@@ -3,13 +3,15 @@ import DeskPet from '../components/DeskPet'
 import { IP_CONFIG } from '../data/copy'
 import { busListen } from '../lib/bus'
 import { inTauri } from '../lib/backend'
+import { getPreferredIpKey, normalizeIpKey } from '../lib/ipPreference'
 
 /**
  * 桌宠真窗口（Tauri：透明 / 无边框 / 置顶 / 右下角）。
  * 状态来自事件总线（面板窗口广播）；点石虎 = 让 Rust 壳开关面板。
  */
 export default function PetWindow() {
-  const ipc = IP_CONFIG.tiger
+  const [ipKey, setIpKey] = useState(getPreferredIpKey)
+  const ipc = IP_CONFIG[ipKey] || IP_CONFIG.tiger
   const [state, setState] = useState('idle')
   const [panelOpen, setPanelOpen] = useState(false)
   const [gaze, setGaze] = useState(null) // 全局光标跟随算出的视线方向
@@ -21,6 +23,7 @@ export default function PetWindow() {
     busListen((p) => {
       if (p && p.state) setState(p.state)
       if (p && typeof p.panelOpen === 'boolean') setPanelOpen(p.panelOpen)
+      if (p && p.ip) setIpKey(normalizeIpKey(p.ip))
     }).then((u) => {
       if (cancelled) u()   // 卸载已发生 → 立刻注销，别泄漏监听器
       else un = u
@@ -75,7 +78,7 @@ export default function PetWindow() {
   }
 
   return (
-    <div className="win-pet">
+    <div className={`win-pet ${ipc.theme}`}>
       <DeskPet
         ipc={ipc}
         state={state}

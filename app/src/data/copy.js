@@ -68,6 +68,8 @@ export const IP_CONFIG = {
     key: 'tiger',
     label: '🐯 方案A 石虎',
     name: 'Rocky',
+    role: '数字记忆守护',
+    osLabel: 'Rocky OS',
     theme: '', // 默认暖调皮肤
     petSize: 122,
     // 桌宠姿态（透明底）
@@ -109,6 +111,8 @@ export const IP_CONFIG = {
     key: 'lizard',
     label: '🦎 方案B 翼蜥',
     name: 'Lumo',
+    role: '灵感观察助手',
+    osLabel: 'Lumo OS',
     theme: 'theme-lizard', // 冷调玻璃皮肤
     petSize: 138,
     petPose: {

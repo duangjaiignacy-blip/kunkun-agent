@@ -25,6 +25,7 @@ app/src-tauri/gen/
 output/
 .playwright-cli/
 .gstack/
+.superpowers/
 *.log
 
 # ── 系统 ──
